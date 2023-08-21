@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hovering Speed Test</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="./icon.png" type="image/x-icon">
+    <style>
+        .iframe-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 aspect ratio (adjust as needed) */
+            border: 1px solid #070707; 
+        }
+        .iframe-fullsize {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar is-black" role="navigation" aria-label="main navigation">
+        <div class="navbar-start">
+            <div class="navbar-item">
+                <div class="buttons">
+                    <button class="button is-small" id="githubButton">
+                        <span class="icon">
+                            <i class="fab fa-github"></i>
+                        </span>
+                        <span>GitHub</span>
+                    </button>
+                    <button class="button is-info is-small" id="LinkedInButton">
+                        <span class="icon">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                        </span>
+                        <span>LinkedIn</span>
+                    </button>
+                    <button class="button is-danger is-small is-light" id="instagramgithubButton">
+                        <span class="icon">
+                            <i class="fa-brands fa-instagram"></i>
+                        </span>
+                        <span>@bilal_belli__</span>
+                    </button>
+                    <button class="button is-info is-small is-light" id="twitterButton">
+                        <span class="icon">
+                            <i class="fab fa-twitter"></i>
+                        </span>
+                        <span>@bilal_belli_</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="notification is-info p-2 m-2">
+            This website will allow you to practice and improve your skills in: <strong>mouse speed clicking</strong>, <strong>fast mouse hovering</strong>, and <strong>fast clicking while hovering</strong>, since it is necessary to be fast for gaming.
+        </div>
+        <div class="columns">
+            <div class="column">
+                <div class="notification is-warning p-2 m-2">
+                    <p><strong>Instructions:</strong></p>
+                    <p>1. Choose the test that you want to do.</p>
+                    <p>2. The chronometer starts when you hover or click for the first time.</p>
+                </div>
+                <button class="button  is-fullwidth m-2 is-primary is-outlined">Mouse Speed Click (left)</button>
+                <button class="button  is-fullwidth m-2 is-success is-outlined">Mouse Speed Click (right)</button>
+                <button class="button  is-fullwidth m-2 is-link is-outlined">Fast Mouse Hovering</button>
+                <button class="button  is-fullwidth m-2 is-info is-outlined">Fast Clicking while Hovering</button>
+            </div>
+            <div class="column">
+                <div class="iframe-container">
+                    <iframe class="iframe-fullsize" src="circle.html"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p>Bilal Belli - 2023</p>
+    </div>
+</footer>
+<script>
+    const githubButton = document.getElementById("githubButton");
+    const LinkedInButton = document.getElementById("LinkedInButton");
+    const twitterButton = document.getElementById("twitterButton");
+    const instagramgithubButton = document.getElementById("instagramgithubButton");
+
+    githubButton.addEventListener("click", function() {
+        window.open("https://github.com/Bilal-Belli", "_blank");
+    });
+    LinkedInButton.addEventListener("click", function() {
+        window.open("https://www.linkedin.com/in/belli-bilal/", "_blank");
+    });
+    twitterButton.addEventListener("click", function() {
+        window.open("https://twitter.com/bilal_belli_", "_blank");
+    });
+    instagramgithubButton.addEventListener("click", function() {
+        window.open("https://www.instagram.com/bilal_belli__/", "_blank");
+    });
+</script>
+</html>
