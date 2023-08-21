@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: lightblue; /* Change this to your desired color */
+        }
+    </style>
+</head>
+<body>
+    <div id="timer"></div>
+    <div id="score"></div>
+    <script>
+        const timerDisplay = document.getElementById('timer');
+        const scoreDisplay = document.getElementById('score');
+
+        let clicking = false;
+        let countdown;
+        let timeLeft;
+        let clickCount = 0;
+
+        function startTimer(durationInSeconds) {
+            timeLeft = durationInSeconds;
+            updateTimerDisplay();
+
+            countdown = setInterval(() => {
+                timeLeft--;
+                if (timeLeft <= 0) {
+                    clearInterval(countdown);
+                    document.removeEventListener('contextmenu', handleRightClick);
+                    document.removeEventListener('click', handleLeftClick);
+                    timerDisplay.textContent = 'Time\'s up!';
+                }
+                updateTimerDisplay();
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timerDisplay.textContent = `Time left: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        }
+
+        function handleRightClick(event) {
+            event.preventDefault(); // Prevent the context menu from showing
+            if (!clicking) {
+                clicking = true;
+                startTimer(parentTimeForTest); // Convert minutes to seconds
+            }
+            clickCount++;
+            scoreDisplay.textContent = `Clicks: ${clickCount}`;
+            createClickEffect(event.clientX, event.clientY);
+        }
+
+        function handleLeftClick(event) {
+            if (!clicking) {
+                clicking = true;
+                startTimer(parentTimeForTest); // Convert minutes to seconds
+            }
+            clickCount++;
+            scoreDisplay.textContent = `Clicks: ${clickCount}`;
+            createClickEffect(event.clientX, event.clientY);
+        }
+
+        function createClickEffect(x, y) {
+            const clickEffect = document.createElement('div');
+            clickEffect.className = 'click-effect';
+            clickEffect.style.left = `${x - 25}px`;
+            clickEffect.style.top = `${y - 25}px`;
+            document.body.appendChild(clickEffect);
+
+            setTimeout(() => {
+                document.body.removeChild(clickEffect);
+            }, 1000); // Remove the click effect after 1 second
+        }
+
+        document.addEventListener('contextmenu', handleRightClick);
+        document.addEventListener('click', handleLeftClick);
+
+        let parentTimeForTest = window.parent.timeForTest;
+        let parentScoreTestValue = window.parent.scoreTestValue || 0;
+    </script>
+    <style>
+        .click-effect {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            pointer-events: none; /* Prevent the click effect from affecting clicks */
+            animation: clickEffectAnimation 1s ease-out;
+        }
+
+        @keyframes clickEffectAnimation {
+            from {
+                transform: scale(0);
+                opacity: 1;
+            }
+            to {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+    </style>
+</body>
+</html>

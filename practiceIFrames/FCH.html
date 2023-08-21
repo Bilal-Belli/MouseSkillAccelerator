@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: black;
+            position: absolute;
+        }
+        body {
+            background-color: lightblue; /* Change this to your desired color */
+        }
+    </style>
+</head>
+<body>
+    <div id="circle"></div>
+    <div id="timer"></div>
+    <div id="score"></div>
+    <script>
+        const circle = document.getElementById('circle');
+        const timerDisplay = document.getElementById('timer');
+        const scoreDisplay = document.getElementById('score');
+
+        let hovering = false;
+        let countdown;
+        let timeLeft;
+
+        function getRandomPosition() {
+            const maxX = window.innerWidth - circle.offsetWidth;
+            const maxY = window.innerHeight - circle.offsetHeight;
+
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+
+            return { x: randomX, y: randomY };
+        }
+
+        function updateCirclePosition() {
+            const randomPosition = getRandomPosition();
+            circle.style.left = randomPosition.x + 'px';
+            circle.style.top = randomPosition.y + 'px';
+        }
+
+        function startTimer(durationInSeconds) {
+            timeLeft = durationInSeconds;
+            updateTimerDisplay();
+
+            countdown = setInterval(() => {
+                timeLeft--;
+                if (timeLeft <= 0) {
+                    clearInterval(countdown);
+                    circle.removeEventListener('click', handleClick);
+                    timerDisplay.textContent = 'Time\'s up!';
+                }
+                updateTimerDisplay();
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timerDisplay.textContent = `Time left: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        }
+
+        function handleClick() {
+            if (!hovering) {
+                hovering = true;
+                startTimer(parentTimeForTest); // seconds
+            }
+            parentScoreTestValue++;
+            scoreDisplay.textContent = `Score: ${parentScoreTestValue}`;
+            updateCirclePosition();
+        }
+
+        circle.addEventListener('click', handleClick);
+        updateCirclePosition();
+
+        let parentTimeForTest = window.parent.timeForTest;
+        let parentScoreTestValue = window.parent.scoreTestValue || 0;
+        
+    </script>
+</body>
+</html>
