@@ -3,10 +3,8 @@
 
 ### Demo
 <div align="center">
-   <img width="713" alt="1" src="">
+   <img  src="https://github.com/Bilal-Belli/MouseSkillAccelerator/assets/74218805/a7ab5531-3112-423e-94ff-a262008fc0e6">
 </div>
-
-//i ll put it soon
 
 ### License
 This repository is licensed under the MIT License.
