@@ -3,7 +3,7 @@
 
 ### Demo
 <div align="center">
-   <img  src="https://github.com/Bilal-Belli/MouseSkillAccelerator/assets/74218805/a7ab5531-3112-423e-94ff-a262008fc0e6">
+   <video width="514" alt="demoVideo" src="https://github.com/user-attachments/assets/9e4772ae-8bbd-41da-afe6-8ac957bc4d24">
 </div>
 
 ### License
